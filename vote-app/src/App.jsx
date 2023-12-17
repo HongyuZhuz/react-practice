@@ -15,7 +15,7 @@ const ProductList = () =>{
         });
       }
       else return product;
-    });
+    }).sort((a,b)=>b.votes-a.votes);
 
     setProducts(p)
 
