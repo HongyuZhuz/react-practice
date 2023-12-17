@@ -1,26 +1,24 @@
 import 'semantic-ui-css/semantic.min.css';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const ProductList = () =>{
-  const p = Seed.products.sort((a,b)=>(b.votes-a.votes));
-  const [products,setProducts] = React.useState(p);
+  const [products,setProducts] = React.useState([]);
+  useEffect(() => {
+    setProducts(Seed.products);
+  }, []);
 
   const handleVote =(id)=>{
-    console.log(id);
-    const p = products.map((product)=>{
-      if (product.id ===id) {
-        return Object.assign({},product,{
-          votes:product.votes+1,
-        });
+    const updatedProducts = products.map((product)=>{
+      if (product.id===id){
+        return {...product,votes:product.votes+1};
       }
-      else return product;
-    }).sort((a,b)=>b.votes-a.votes);
-
-    setProducts(p)
-
+      return product;
+    })
+    setProducts(updatedProducts);
   }
-  const productComponents = products.map((product)=>(
+  const sortedProducts = [...products].sort((a,b)=>b.votes-a.votes);
+  const productComponents = sortedProducts.map((product)=>(
     <Product 
     key={'product-'+product.id}
     id={product.id}
@@ -33,9 +31,12 @@ const ProductList = () =>{
     handleVote = {handleVote}/>
   )); 
   return(
-    <div className = 'ui unstackable items'>
-      {productComponents}
+    <div className = "centered-container">
+      <div className = 'ui unstackable items'>
+        {productComponents}
+      </div>
     </div>
+    
   )
 }
 

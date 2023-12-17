@@ -3,3 +3,9 @@
   margin-right: auto;
   display: block; /* 这对于像图片这样的元素很重要 */
 }
+.centered-container {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  height: 100vh; /* 容器高度为视口高度 */
+}
