@@ -1,9 +1,11 @@
 import 'semantic-ui-css/semantic.min.css';
+import * as React from 'react';
 
 
 const ProductList = () =>{
-  console.log(Seed.products);
-  const productComponents = Seed.products.map((product)=>(
+  const [products,setProducts] = React.useState(Seed.products);
+  console.log(products)
+  const productComponents = products.map((product)=>(
     <Product 
     key={'product-'+product.id}
     id={product.id}
