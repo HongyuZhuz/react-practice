@@ -3,11 +3,15 @@ import React, { useState, useEffect } from 'react';
 
 
 const ProductList = () =>{
+  /*set states*/
   const [products,setProducts] = React.useState([]);
+
+  /*initial states*/
   useEffect(() => {
     setProducts(Seed.products);
   }, []);
 
+  /*handleVote function*/ 
   const handleVote =(id)=>{
     const updatedProducts = products.map((product)=>{
       if (product.id===id){
@@ -17,6 +21,8 @@ const ProductList = () =>{
     })
     setProducts(updatedProducts);
   }
+
+
   const sortedProducts = [...products].sort((a,b)=>b.votes-a.votes);
   const productComponents = sortedProducts.map((product)=>(
     <Product 
