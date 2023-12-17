@@ -9,3 +9,6 @@
   align-items: center; /* 垂直居中 */
   height: 100vh; /* 容器高度为视口高度 */
 }
+.header {
+  user-select: none;
+}
